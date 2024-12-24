@@ -1,0 +1,21 @@
+{
+    "appId": "com.electron-app.project",
+    "icon": "./desktopicon.png",
+    "files": [
+        "dist-electron",
+        "dist-react"
+    ],
+    "mac": {
+        "target": "dmg"
+    },
+    "linux": {
+        "target": "AppImage",
+        "category": "Development"
+    },
+    "win": {
+        "target": [
+            "portable",
+            "msi"
+        ]
+    }
+}
