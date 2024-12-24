@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        // required strict type checking
+        "strict": true,
+        // tell typescript to generate ESM Syntax
+        "target": "ESNext",
+        // tell Typescript to require ESM Suntax as input
+        "module": "NodeNext",
+
+        "outDir": "../../dist-electron",
+
+        "skipLibCheck": true,
+      
+    }
+}
