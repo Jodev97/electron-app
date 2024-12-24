@@ -570,6 +570,11 @@
   dependencies:
     undici-types "~6.19.2"
 
+"@types/os-utils@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/@types/os-utils/-/os-utils-0.0.4.tgz"
+  integrity sha512-TdQ/6GHzq8YMsDOXHfit8sDD1VjLnqC61sI7ICocwREw/68V5C/bjex+/Jya3XRD3FgGyj6fhTqhbVrXeh8UJg==
+
 "@types/prop-types@*":
   version "15.7.14"
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.14.tgz"
@@ -3222,6 +3227,11 @@ ora@^5.1.0:
     log-symbols "^4.1.0"
     strip-ansi "^6.0.0"
     wcwidth "^1.0.1"
+
+os-utils@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.npmjs.org/os-utils/-/os-utils-0.0.14.tgz"
+  integrity sha512-ajB8csaHLBvJOYsHJkp8YdO2FvlBbf/ZxaYQwXXRDyQ84UoE+uTuLXxqd0shekXMX6Qr/pt/DDyLMRAMsgfWzg==
 
 p-cancelable@^2.0.0:
   version "2.1.1"
