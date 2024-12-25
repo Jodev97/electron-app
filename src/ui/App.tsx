@@ -7,11 +7,26 @@ import Chart from './Chart'
 function App() {
   const [count, setCount] = useState(0)
   const statatics = useStatistics(10)
-  const cpuUsages = useMemo(() => statatics.map((s) => s.cpuUsage), [statatics])
+  const [activeView, setActiveView] = useState<View>('CPU')
 
-  useEffect(() => { 
+  const cpuUsages = useMemo(() => statatics.map((s) => s.cpuUsage), [statatics])
+  const ramUsages = useMemo(() => statatics.map((s) => s.ramUsage), [statatics])
+  const storageUsages = useMemo(() => statatics.map((s) => s.storageUse), [statatics])
+
+  const activeUsage = useMemo(() => {
+    switch (activeView) {
+      case 'CPU':
+        return cpuUsages
+      case 'RAM':
+        return ramUsages
+      case 'STORAGE':
+        return storageUsages
+    }
+  }, [activeView, cpuUsages, ramUsages, storageUsages])
+
+  useEffect(() => {
     window.electron.subscribeChangeView((view) => {
-      console.log(view)
+      setActiveView(view)
     })
   }, [])
   return (
@@ -20,7 +35,7 @@ function App() {
 
         <Chart
           maxDataPoints={10}
-          data={cpuUsages}
+          data={activeUsage}
           fill={"#0a4d5c"}
           stroke={"#5DD4EE"} />
       </div>
