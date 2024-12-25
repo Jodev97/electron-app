@@ -1,6 +1,6 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import { isDev } from './util.js';
+import { ipcMainHandle, isDev } from './util.js';
 import { getStaticData, pollResource } from './resourceManager.js';
 import { getPreloadPath } from './pathResolve.js';
 
@@ -20,7 +20,12 @@ app.on('ready', () => {
 
   pollResource(mainWindow);
 
-  ipcMain.handle('getStaticData', async () => {
-    return await getStaticData();
+  ipcMainHandle('getStaticData', async (): Promise<StaticData> => {
+    const { totalStorage, cpuModel, totalMemoryGB } = await getStaticData();
+    return {
+      totalStorage: totalStorage || 0,
+      cpuModel,
+      totalMemoryGB
+    };
   });
 });
