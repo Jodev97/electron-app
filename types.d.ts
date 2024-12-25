@@ -10,10 +10,13 @@ type StaticData = {
     totalMemoryGB: number
 }
 
+type FrameWindowAction = 'CLOSE' | 'MINIMIZE' | 'MAXIMIZE'
+
 type EventPayloadMapping = {
     statistics: Statistics,
     getStaticData: Promise<StaticData>,
-    changeView: View
+    changeView: View,
+    sendFrameAction: FrameWindowAction
 }
 
 type UnsubscribeFunction = () => void
@@ -24,6 +27,6 @@ interface Window {
         subscribeStatistics: (callback: (stats: Statistics) => void) => UnsubscribeFunction,
         getStaticData: () => Promise<StaticData>,
         subscribeChangeView: (callback: (view: View) => void) => UnsubscribeFunction,
-
+        sendFrameAction: (payload: FrameWindowAction) => void
     }
 }

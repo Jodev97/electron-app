@@ -1,5 +1,5 @@
 import { app, BrowserWindow, Menu } from 'electron';
-import { ipcMainHandle, isDev } from './util.js';
+import { ipcMainHandle, ipcMainOn, isDev } from './util.js';
 import { getStaticData, pollResource } from './resourceManager.js';
 import { getPreloadPath, getUIPath } from './pathResolve.js';
 import { createTray } from './tray.js';
@@ -13,7 +13,8 @@ app.on('ready', () => {
     height: 600,
     webPreferences: {
       preload: getPreloadPath()
-    }
+    },
+    frame: false,
   });
   if (isDev()) {
     mainWindow.loadURL('http://localhost:5123');
@@ -32,6 +33,22 @@ app.on('ready', () => {
     };
   });
 
+  ipcMainOn('sendFrameAction', (payload) => {
+    switch (payload) {
+      case 'CLOSE':
+        mainWindow.close();
+        break;
+      case 'MINIMIZE':
+        mainWindow.minimize();
+        break;
+      case 'MAXIMIZE':
+        mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize();
+        break
+
+      default:
+        break;
+    }
+  });
   createTray(mainWindow);
   createMenu(mainWindow);
   handleCloseEvents(mainWindow);
