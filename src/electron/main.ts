@@ -1,8 +1,11 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import { ipcMainHandle, isDev } from './util.js';
 import { getStaticData, pollResource } from './resourceManager.js';
 import { getPreloadPath, getUIPath } from './pathResolve.js';
 import { createTray } from './tray.js';
+import { createMenu } from './menu.js';
+
+Menu.setApplicationMenu(null);
 
 app.on('ready', () => {
   let mainWindow = new BrowserWindow({
@@ -30,6 +33,7 @@ app.on('ready', () => {
   });
 
   createTray(mainWindow);
+  createMenu(mainWindow);
   handleCloseEvents(mainWindow);
 });
 

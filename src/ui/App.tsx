@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import './App.css'
 import { useStatistics } from './useStatistics'
@@ -9,6 +9,11 @@ function App() {
   const statatics = useStatistics(10)
   const cpuUsages = useMemo(() => statatics.map((s) => s.cpuUsage), [statatics])
 
+  useEffect(() => { 
+    window.electron.subscribeChangeView((view) => {
+      console.log(view)
+    })
+  }, [])
   return (
     <div className='App'>
       <div style={{ height: 120 }}>
