@@ -1,6 +1,7 @@
 {
     "appId": "com.electron-app.project",
     "icon": "./desktopicon.png",
+    "extraResouces": ["dist-eslectron/preload.cjs"],
     "files": [
         "dist-electron",
         "dist-react"
