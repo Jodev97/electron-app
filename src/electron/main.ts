@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from 'electron';
-import path from 'path';
 import { ipcMainHandle, isDev } from './util.js';
 import { getStaticData, pollResource } from './resourceManager.js';
 import { getPreloadPath, getUIPath } from './pathResolve.js';
